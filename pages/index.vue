@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { getUser } from "@users/api";
+import { useUserStore } from "@user/store";
 
-const { data, error } = getUser();
+const store = useUserStore();
+const { user } = storeToRefs(store);
 </script>
 <template>
   <div>
-    <div>{{ data }}</div>
-    <pre>{{ error }}</pre>
+    <nuxt-link to="/login">На авторизацию</nuxt-link>
+    <pre>{{ user }}</pre>
   </div>
 </template>
 

@@ -1,6 +1,11 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from "./.nuxt/eslint.config.mjs";
 
-export default withNuxt(
-  // Your custom configs here
-)
+export default withNuxt([
+  {
+    rules: {
+      // ⚠️ Понижаем строгость для any
+      "@typescript-eslint/no-explicit-any": "warn",
+    },
+  },
+]);

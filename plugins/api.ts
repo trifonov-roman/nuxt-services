@@ -4,6 +4,12 @@ export default defineNuxtPlugin(() => {
     retryStatusCodes: [403],
     retry: 1,
     baseURL: config.public.baseURL,
+    onRequest({ options }: { options: any }) {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${config.githubToken}`,
+      };
+    },
     onResponseError({ response, options }) {
       const error = createError({
         message: "Response error",

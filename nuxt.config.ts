@@ -1,6 +1,9 @@
 import { fileURLToPath } from "url";
 
 export default defineNuxtConfig({
+  experimental: {
+    typedPages: true,
+  },
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
   modules: [
@@ -12,12 +15,13 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
   ],
   runtimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN,
     public: {
       baseURL: process.env.NUXT_PUBLIC_BASE_URL,
     },
   },
   alias: {
-    "@users": fileURLToPath(new URL("./services/users", import.meta.url)),
+    "@user": fileURLToPath(new URL("./services/user", import.meta.url)),
   },
   imports: {
     dirs: ["composables/**/index.ts"],
@@ -26,7 +30,7 @@ export default defineNuxtConfig({
     tsConfig: {
       compilerOptions: {
         paths: {
-          "@users/*": ["services/users/*"],
+          "@user/*": ["services/user/*"],
         },
       },
     },
