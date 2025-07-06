@@ -1,31 +1,34 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from "url";
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
+  compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxt/test-utils',
-    '@pinia/nuxt', 
-    '@vueuse/nuxt'
+    "@nuxt/eslint",
+    "@nuxt/icon",
+    "@nuxt/image",
+    "@nuxt/test-utils",
+    "@pinia/nuxt",
+    "@vueuse/nuxt",
   ],
   runtimeConfig: {
-  public: {
-    baseURL: process.env.NUXT_PUBLIC_BASE_URL
-  }
+    public: {
+      baseURL: process.env.NUXT_PUBLIC_BASE_URL,
+    },
   },
   alias: {
-    '@users': fileURLToPath(new URL('./services/users', import.meta.url)),
+    "@users": fileURLToPath(new URL("./services/users", import.meta.url)),
+  },
+  imports: {
+    dirs: ["composables/**/index.ts"],
   },
   typescript: {
     tsConfig: {
       compilerOptions: {
-        "paths": {
-          "@users/*": ["services/users/*"]
-        }
-      }
-    }
-  }
-})
+        paths: {
+          "@users/*": ["services/users/*"],
+        },
+      },
+    },
+  },
+});
