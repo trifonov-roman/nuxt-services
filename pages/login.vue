@@ -1,8 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUiStore } from '@ui/store';
+
+const store = useUiStore()
+const { isOpenSideBar, randomText } = storeToRefs(store)
+
+const localState = ref(false)
+</script>
 <template>
   <div>
+    <input v-model="localState" type="checkbox">
     <nuxt-link to="/">На главную</nuxt-link>
-    <p>страница логин</p>
+    <button @click="isOpenSideBar = !isOpenSideBar">{{ isOpenSideBar ? 'Сайдбар открыт' : 'Сайдбар закрыт' }}</button>
+    <input v-model="randomText" type="text">
   </div>
 </template>
 

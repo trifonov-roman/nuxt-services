@@ -22,6 +22,7 @@ export default defineNuxtConfig({
   },
   alias: {
     "@user": fileURLToPath(new URL("./services/user", import.meta.url)),
+    "@ui": fileURLToPath(new URL("./services/ui", import.meta.url)),
   },
   imports: {
     dirs: ["composables/**/index.ts"],
@@ -31,6 +32,7 @@ export default defineNuxtConfig({
       compilerOptions: {
         paths: {
           "@user/*": ["services/user/*"],
+          "@ui/*": ["services/ui/*"],
         },
       },
     },
