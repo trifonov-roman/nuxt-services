@@ -12,6 +12,7 @@ const localState = ref(false)
     <nuxt-link to="/">На главную</nuxt-link>
     <button @click="isOpenSideBar = !isOpenSideBar">{{ isOpenSideBar ? 'Сайдбар открыт' : 'Сайдбар закрыт' }}</button>
     <input v-model="randomText" type="text">
+    <BaseTitle :is-green="true"/>
   </div>
 </template>
 
