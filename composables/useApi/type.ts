@@ -7,9 +7,8 @@ import type { DinamicValueRequest } from "~/types/base";
 export type ApiOptions<T> = Omit<UseFetchOptions<T>, "$fetch" | "method"> & {
   dinamic?: DinamicValueRequest
 }
-export type UseApi = {
-  <T>(url: keyof paths, options?: ApiOptions<T>): ReturnType<
-    typeof useFetch<T>
-  >;
-  <T>(url: string, options?: ApiOptions<T>): ReturnType<typeof useFetch<T>>;
-};
+export type UseApi<T> = {
+  url: keyof paths
+  options: ApiOptions<T>
+}
+
