@@ -7,5 +7,10 @@ export const getUser = () => {
 };
 
 export const getUserFollowng = (username: string) => {
-  return useApi(`/user/blocks/${username}`);
+  return useApi(`/user/blocks/{username}`,{
+    dinamic: {
+      username
+    }
+  });
 };
+

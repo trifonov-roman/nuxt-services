@@ -1,0 +1,1 @@
+export type DinamicValueRequest =  Record<string,number | string> 
