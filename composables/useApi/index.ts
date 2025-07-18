@@ -7,7 +7,7 @@ import type { ApiOptions } from "./type";
 
 
 export const useApi = <T>(
-  url: keyof paths | string,
+  url: keyof paths,
   options?: ApiOptions<T>
 ) => {
   const resolvedUrl = resolveUrl(url as string, options?.dinamic); // заменяет {dinamic} на конкретное значение
