@@ -11,6 +11,8 @@ const { user } = storeToRefs(store);
   <div>
     <nuxt-link to="/login">На авторизацию</nuxt-link>
     <pre>{{ user }}</pre>
+
+    <base-button icon-name="book" text="текст" />
   </div>
 </template>
 

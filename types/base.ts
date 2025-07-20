@@ -5,3 +5,6 @@ export type ShowErrorProps = {
     title: string
     subtitle: string
 }
+
+export type Theme = 'primary' | 'secondary' | 'transparent' | 'alarm' | 'tertiary'
+export type Size = 'small' | 'medium' | 'large' | 'extra-large'

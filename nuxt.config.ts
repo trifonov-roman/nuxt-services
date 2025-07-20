@@ -37,4 +37,12 @@ export default defineNuxtConfig({
       },
     },
   },
+    icon: {
+    customCollections: [
+      {
+        prefix: 'local',
+        dir: './assets/icons',
+      },
+    ],
+  },
 });
