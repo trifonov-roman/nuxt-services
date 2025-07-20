@@ -23,9 +23,9 @@ const buttonClass = computed(() => ({
 </script>
 
 <template>
-    <button class="base-button" :class="buttonClass" :disabled="disabled" type="button">
+    <button class="base-button" :class="buttonClass" :disabled="disabled" type="button" data-testid="base-button">
         <span v-if="iconName" class="base-button-wrapper">
-            <BaseLoader v-if="loading" />
+            <BaseLoader v-if="loading" data-testid="base-button-loader" />
             <Icon v-else class="base-button-icon" :name="`local:${iconName}`" />
         </span>
         <span v-if="text">{{ text }}</span>
