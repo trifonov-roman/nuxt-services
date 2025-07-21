@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { useUserStore } from '@user/store';
+import { useCheckboxGroup } from '~/components/Base/Checkbox'
 
+const data = [
+  { id: 1, text: 'Roman' },
+  { id: 2, text: 'Liza', },
+  { id: 3, text: 'Stas', disabled: true },
+]
 
+const { model, array, value, indeterminate, checkAllModel } = useCheckboxGroup(data, 'text')
 
-const store = useUserStore();
-const { user } = storeToRefs(store);
 </script>
+
 <template>
   <div>
-    <nuxt-link to="/login">На авторизацию</nuxt-link>
-    <pre>{{ user }}</pre>
-
-    <base-button icon-name="book" text="текст" />
+    <base-checkbox v-model="checkAllModel" :indeterminate="indeterminate" text="Выбрать все" />
+    <base-checkbox-group v-model="model" :array="array" option-text="text" :option-value="value" />
+    <pre>{{ model }}</pre>
   </div>
 </template>
-
-<style lang="scss" scoped></style>

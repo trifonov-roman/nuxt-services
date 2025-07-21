@@ -2,7 +2,7 @@ import { defineVitestConfig } from "@nuxt/test-utils/config";
 
 export default defineVitestConfig({
   test: {
-    setupFiles: ['./test/globalMock.ts'],
+    setupFiles: ['./tests/globalMock.ts'],
     environment: 'nuxt',
     environmentOptions: {
       nuxt: {
