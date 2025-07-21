@@ -1,7 +1,7 @@
 import type { GetUser } from "./type";
 
 export const useUserStore = defineStore("user", () => {
-  const user = shallowRef<GetUser | null>(null);
+  const user = shallowRef<GetUser | undefined>();
 
   const init = async () => {
     if (user.value) return;
@@ -9,7 +9,7 @@ export const useUserStore = defineStore("user", () => {
       const { data } = await useApi<GetUser>("/user");
       user.value = data.value;
     } catch {
-      user.value = null;
+      user.value = undefined;
     }
   };
 

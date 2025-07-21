@@ -21,8 +21,8 @@ export default defineNuxtConfig({
     },
   },
   alias: {
-    "@user": fileURLToPath(new URL("./services/user", import.meta.url)),
-    "@ui": fileURLToPath(new URL("./services/ui", import.meta.url)),
+    "@user": fileURLToPath(new URL("./app/services/user", import.meta.url)),
+    "@ui": fileURLToPath(new URL("./app/services/ui", import.meta.url)),
   },
   imports: {
     dirs: ["composables/**/index.ts"],
@@ -31,8 +31,8 @@ export default defineNuxtConfig({
     tsConfig: {
       compilerOptions: {
         paths: {
-          "@user/*": ["services/user/*"],
-          "@ui/*": ["services/ui/*"],
+          "@user/*": ["app/services/user/*"],
+          "@ui/*": ["app/services/ui/*"],
         },
       },
     },
@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     customCollections: [
       {
         prefix: 'local',
-        dir: './assets/icons',
+        dir: './app/assets/icons',
       },
     ],
   },

@@ -5,7 +5,6 @@ import { useUserStore } from '@user/store';
 
 const store = useUserStore();
 const { user } = storeToRefs(store);
-
 </script>
 <template>
   <div>
