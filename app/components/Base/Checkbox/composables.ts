@@ -10,17 +10,24 @@ export const useCheckboxGroup = <
   array: Ref<T[]> | T[],
   valueKey: K
 ) => {
-  const model = ref<T[K][]>([]);
+  const model: Ref<Array<T[K]>> = ref([]);
   const enabledItems = computed(() =>
     unref(array).filter((item) => item.disabled !== true)
   );
+  const isAllDisabled = computed(() => enabledItems.value.length === 0);
+
   const indeterminate = computed(() => {
     const checkedCount = model.value.length;
     return checkedCount > 0 && checkedCount < enabledItems.value.length;
   });
 
   const checkAllModel = computed({
-    get: () => model.value.length === enabledItems.value.length,
+    get: () => {
+      if (isAllDisabled.value) return false;
+      return enabledItems.value.every((item) =>
+        model.value.includes(item[valueKey])
+      );
+    },
     set: (val: boolean) => {
       model.value = val ? enabledItems.value.map((item) => item[valueKey]) : [];
     },
@@ -31,5 +38,6 @@ export const useCheckboxGroup = <
     value: valueKey,
     indeterminate,
     checkAllModel,
+    isAllDisabled,
   };
 };

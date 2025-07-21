@@ -1,20 +1,38 @@
 <script setup lang="ts">
 import { useCheckboxGroup } from '~/components/Base/Checkbox'
 
-const data = [
-  { id: 1, text: 'Roman' },
-  { id: 2, text: 'Liza', },
-  { id: 3, text: 'Stas', disabled: true },
-]
-
-const { model, array, value, indeterminate, checkAllModel } = useCheckboxGroup(data, 'text')
+const count = ref(20)
+const serverData = ref([
+  { id: 1, text: 'Roman', age: 20 },
+  { id: 2, text: 'Liza', age: 21 },
+  { id: 3, text: 'Stas', age: 22 },
+])
+const clientData = computed(() => serverData.value.map((item) => ({
+  ...item,
+  disabled: item.age > count.value,
+})))
+const { model, array, value, indeterminate, checkAllModel, isAllDisabled } = useCheckboxGroup(clientData, 'text')
 
 </script>
 
 <template>
   <div>
-    <base-checkbox v-model="checkAllModel" :indeterminate="indeterminate" text="Выбрать все" />
+    <pre>{{ clientData }}</pre>
+    {{ count }}
+    <input v-model="count" type="number">
+    <base-checkbox v-model="checkAllModel" :disabled="isAllDisabled" :indeterminate="indeterminate"
+      text="Выбрать все" />
     <base-checkbox-group v-model="model" :array="array" option-text="text" :option-value="value" />
     <pre>{{ model }}</pre>
+
+
+    <base-checkbox-group v-model="model" :array="clientData" option-text="text" option-value="text">
+      <template #default="{ item, isChecked, toggle }">
+        <div class="custom-wrapper" :class="{ checked: isChecked }" @click="toggle">
+          <base-checkbox :value="item.text" :text="item.text" :checked="isChecked" />
+          <p>Описание: возраст — {{ item.age }}</p>
+        </div>
+      </template>
+    </base-checkbox-group>
   </div>
 </template>

@@ -16,11 +16,7 @@ const isChecked = computed<boolean>({
   },
   set(val) {
     if (groupModel && props.value !== undefined) {
-      const list = [...groupModel.value]
-      const index = list.indexOf(props.value)
-      if (val && index === -1) list.push(props.value)
-      else if (!val && index !== -1) list.splice(index, 1)
-      groupModel.value = list
+      groupModel.value = toggleArrayValue(groupModel.value, props.value)
     } else {
       model.value = val
     }
