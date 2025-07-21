@@ -8,9 +8,11 @@ export const useCheckboxGroup = <
   K extends KeysWithPrimitiveValues<T>
 >(
   array: Ref<T[]> | T[],
-  valueKey: K
+  valueKey: K,
+  externalModel?: Ref<T[K][]>
 ) => {
-  const model: Ref<Array<T[K]>> = ref([]);
+  const model: Ref<Array<T[K]>> = externalModel ?? ref([]);
+
   const enabledItems = computed(() =>
     unref(array).filter((item) => item.disabled !== true)
   );
