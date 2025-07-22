@@ -1,9 +1,8 @@
-import type { CheckboxValues } from "../type";
+import type { CheckboxOptions, CheckboxValues } from "../type";
 
 export type CheckboxGroupObject = {
   [key: string]: unknown;
-  disabled?: boolean;
-};
+} & CheckboxOptions;
 export type KeysWithPrimitiveValues<T> = {
   [K in keyof T]: T[K] extends CheckboxValues ? K : never;
 }[keyof T];

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useCheckboxGroup } from '~/components/Base/Checkbox'
+import type { CheckboxGroupObject } from '~/components/Base/Checkbox/Group/type'
 
 const count = ref(20)
 const serverData = ref([
@@ -12,7 +13,7 @@ const piniaState = ref<string[]>([])
 const clientData = computed(() => serverData.value.map((item) => ({
   ...item,
   disabled: item.age > count.value,
-})))
+}) satisfies CheckboxGroupObject))
 const { model, array, value, indeterminate, checkAllModel, isAllDisabled } = useCheckboxGroup(clientData, 'text', piniaState)
 
 </script>

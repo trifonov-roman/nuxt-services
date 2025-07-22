@@ -29,7 +29,7 @@ const toggleValue = (val: T[K]) => {
     </template>
     <template v-else>
       <BaseCheckbox v-for="item in array" :key="String(item[optionValue])" :value="String(item[optionValue])"
-        :text="String(item[optionText])" :disabled="item.disabled" />
+        :text="String(item[optionText])" :disabled="item.disabled" :indeterminate="item.indeterminate" />
     </template>
   </div>
 </template>
