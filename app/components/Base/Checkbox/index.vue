@@ -12,7 +12,7 @@ const isChecked = computed<boolean>({
     if (groupModel && props.value !== undefined) {
       return groupModel.value.includes(props.value)
     }
-    return model.value ?? false
+    return model.value ?? false // может быть undefined поэтому приводим к false,а model может не быть когда мы работаем через group
   },
   set(val) {
     if (groupModel && props.value !== undefined) {
@@ -26,7 +26,8 @@ const isChecked = computed<boolean>({
 
 <template>
   <label class="base-checkbox">
-    <input v-model="isChecked" type="checkbox" :disabled="disabled" :indeterminate="indeterminate"
+    <input
+v-model="isChecked" type="checkbox" :disabled="disabled" :indeterminate="indeterminate"
       class="base-checkbox__input">
     <span v-if="text" class="base-checkbox__label">{{ text }}</span>
   </label>
