@@ -8,7 +8,6 @@ export type KeysWithPrimitiveValues<T> = {
 }[keyof T];
 
 export type CheckboxGroupProps<T, K extends keyof T> = {
-  modelValue: T[K][];
   array: T[];
   optionValue: K;
   optionText: keyof T;
