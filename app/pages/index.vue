@@ -9,12 +9,12 @@ const serverData = ref([
   { id: 3, text: 'Stas', age: 22 },
 ])
 
-const piniaState = ref<string[]>([])
+const piniaState = ref<number[]>([])
 const clientData = computed(() => serverData.value.map((item) => ({
   ...item,
   disabled: item.age > count.value,
 }) satisfies CheckboxGroupObject))
-const { model, array, value, indeterminate, checkAllModel, isAllDisabled } = useCheckboxGroup(clientData, 'text', piniaState)
+const {  array, value, indeterminate, checkAllModel, isAllDisabled } = useCheckboxGroup(clientData, 'age', piniaState)
 
 </script>
 
@@ -23,13 +23,13 @@ const { model, array, value, indeterminate, checkAllModel, isAllDisabled } = use
     <pre>{{ clientData }}</pre>
     {{ count }}
     <input v-model="count" type="number">
-    <base-checkbox v-model="checkAllModel" :disabled="isAllDisabled" :indeterminate="indeterminate"
+    <base-checkbox
+v-model="checkAllModel" :disabled="isAllDisabled" :indeterminate="indeterminate"
       text="Выбрать все" />
     <base-checkbox-group v-model="piniaState" :array="array" option-text="text" :option-value="value" />
     <pre>{{ piniaState }}</pre>
 
-
-    <base-checkbox-group v-model="piniaState" :array="clientData" option-text="text" option-value="text">
+    <base-checkbox-group v-model="piniaState" :array="array" option-text="text" :option-value="value">
       <template #default="{ item, isChecked, toggle }">
         <div class="custom-wrapper" :class="{ checked: isChecked }" @click="toggle">
           <base-checkbox :value="item.text" :text="item.text" :checked="isChecked" @click.stop />
