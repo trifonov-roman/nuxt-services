@@ -1,19 +1,15 @@
-import type { paths } from "~/types/api";
-import type { ApiOptions } from "./type";
+import { useNuxtApp } from "#app";
+import type { ApiOptions, UseApiOverloads } from "./type";
 
-/**
- * @param url  путь до API (автокомплит поддерживается, но можно и руками)
- */
-
-
-export const useApi = <T>(
-  url: keyof paths,
+export const useApi: UseApiOverloads = <T, E>(
+  url: string,
   options?: ApiOptions<T>
 ) => {
-  const resolvedUrl = resolveUrl(url as string, options?.dinamic); // заменяет {dinamic} на конкретное значение
+  const resolvedUrl = resolveUrl(url, options?.dinamic);
 
-  return useFetch(resolvedUrl, {
+  return useFetch<T, E>(resolvedUrl, {
     $fetch: useNuxtApp().$api,
+    //@ts-ignore
     method: "get",
     ...options,
   });
