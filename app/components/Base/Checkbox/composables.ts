@@ -43,6 +43,13 @@ const checkAllModel = computed({
     }
   },
 });
+  /**
+   * Сброс выбранных значений к начальному состоянию (пустой массив)
+   */
+  const reset = () => {
+    model.value = [];
+  };
+
   return {
     model,
     array,
@@ -50,5 +57,6 @@ const checkAllModel = computed({
     indeterminate,
     checkAllModel,
     isAllDisabled,
+    reset,
   };
 };
