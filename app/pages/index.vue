@@ -32,7 +32,7 @@ v-model="checkAllModel" :disabled="isAllDisabled" :indeterminate="indeterminate"
     <base-checkbox-group v-model="piniaState" :array="array" option-text="text" :option-value="value">
       <template #default="{ item, isChecked, toggle }">
         <div class="custom-wrapper" :class="{ checked: isChecked }" @click="toggle">
-          <base-checkbox :value="item.text" :text="item.text" :checked="isChecked" @click.stop />
+          <base-checkbox :value="item.age" :text="item.text" :checked="isChecked" @click.stop />
           <p>Описание: возраст — {{ item.age }}</p>
         </div>
       </template>
